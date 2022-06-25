@@ -51,3 +51,45 @@ To show 24-hour in clock, use:
   + to display a list of all available locales.
 - `localectl set-locale LC_TIME=en_GB.UTF-8`
   + this sets the actual system locale for the time clock.
+
+# Expanding
+## Swap space
+Use a dedicated disk for the swap space, or a dedicated partition.
+If you prefer to use a disk, you can also consider to divide that disk into two or more partitions.
+```
+root@bell:~# fdisk -l /dev/sdb
+Disk /dev/sdb: 8 GiB, 8589934592 bytes, 16777216 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes 
+```
+In this case I have adopted a relatively small (virtual) disk for this purpose.
+`cfdisk` is simple to use, is ncurse/ text-menu based.
+```
+root@bell:~# fdisk -l /dev/sdb
+Disk /dev/sdb: 8 GiB, 8589934592 bytes, 16777216 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: A8BD7DCB-9733-234D-9AA5-6C008EAB3E90
+
+Device       Start      End Sectors Size Type
+/dev/sdb1     2048  8390655 8388608   4G Linux swap
+/dev/sdb2  8390656 16777182 8386527   4G Linux swap 
+```
+1. `mkswap /dev/sdb1`
+1. `mkswap /dev/sdb2`
+
+# Maintenance
+Please regularly update your server, using:
+- `apt-get update`
+```
+Hit:1 http://security.debian.org/debian-security bullseye-security InRelease
+Hit:2 http://deb.debian.org/debian bullseye InRelease
+Get:3 http://deb.debian.org/debian bullseye-updates InRelease [39.4 kB]
+Fetched 39.4 kB in 1s (47.5 kB/s)  
+Reading package lists... Done 
+```
