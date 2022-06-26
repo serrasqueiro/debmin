@@ -93,3 +93,8 @@ Get:3 http://deb.debian.org/debian bullseye-updates InRelease [39.4 kB]
 Fetched 39.4 kB in 1s (47.5 kB/s)  
 Reading package lists... Done 
 ```
+# Host management
+## Cloning VMs
+If you use VirtualBox, you can clone machines easily.
+Consider `vbox.bat` as mentioned in ***howto-VDI*** [(here)](https://gist.github.com/serrasqueiro/566c98dd83a90eb12987dd896aea1902#compacting-file-system), designated here has vbox.
+...
